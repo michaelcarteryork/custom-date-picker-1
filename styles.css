@@ -50,6 +50,11 @@ h1 span {
 
 /* Month and dates */
 .date-picker .dates {
-    display: none;
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: white;
 }
 
