@@ -1,12 +1,12 @@
 // DECLARATIONS
 
 const date_picker_element = document.querySelector('.date-picker');
-const selected_date_element = document.querySelector('.date-picker .selected-date');
-const dates_element = document.querySelector('.date-picker .dates');
-const month_element = document.querySelector('.date-picker .dates .month .month-and-year');
-const prev_mth_element = document.querySelector('.date-picker .dates .month .prev-month');
-const next_mth_element = document.querySelector('.date-picker .dates .month .next-month');
-const days_element = document.querySelector('.date-picker .dates .days');
+const selected_date_element = document.querySelector('.selected-date');
+const dates_element = document.querySelector('.dates');
+const month_element = document.querySelector('.month-and-year');
+const prev_mth_element = document.querySelector('.prev-month');
+const next_mth_element = document.querySelector('.next-month');
+const days_element = document.querySelector('.days');
 const months = ['January', 'February', 'March',  'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 // initial values for current date, day, month and year
@@ -28,7 +28,7 @@ let todaysMonth = month;
 let todaysYear = year;
 
 // set month and year (in monnth selector)
-month_element.textContent = months[month] + ' ' + year;
+displayMonthAndYear();
 
 // EVENT LISTENERS
 
@@ -37,6 +37,13 @@ next_mth_element.addEventListener('click', () => changeMonth(1));
 prev_mth_element.addEventListener('click', () => changeMonth(-1));
 
 // FUNCTIONS
+
+/**
+ * display month and year in month selector
+ */
+function displayMonthAndYear() {
+    month_element.textContent = months[month] + ' ' + year;
+}
 
 /**
  * change month and display new month and year
@@ -52,7 +59,7 @@ function changeMonth(monthIncrement) {
         month = 11;
         year --;
     }
-    month_element.textContent = months[month] + ' ' + year;
+    displayMonthAndYear();
 }
 
 /**
