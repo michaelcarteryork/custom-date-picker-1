@@ -3,11 +3,32 @@
 const date_picker_element = document.querySelector('.date-picker');
 const selected_date_element = document.querySelector('.date-picker .selected-date');
 const dates_element = document.querySelector('.date-picker .dates');
-const month_element = document.querySelector('.date-picker .dates .month .mth');
+const month_element = document.querySelector('.date-picker .dates .month .month-and-year');
 const prev_mth_element = document.querySelector('.date-picker .dates .month .prev-mth');
 const next_mth_element = document.querySelector('.date-picker .dates .month .next-mth');
 const days_element = document.querySelector('.date-picker .dates .days');
 const months = ['January', 'February', 'March',  'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+// initial values for current date, day, month and year
+let date = new Date();
+let day = date.getDate();
+let month = date.getMonth();
+let year = date.getFullYear();
+
+// these values change on user selection
+let selectedDate = date;
+let selectedDay = day;
+let selectedMonth = month;
+let selectedYear = year;
+
+// today (doesn't change)
+let todaysDate = date;
+let todaysDay = day;
+let todaysMonth = month;
+let todaysYear = year;
+
+// set month and year (in monnth selector)
+month_element.textContent = months[month] + ' ' + year;
 
 // EVENT LISTENERS
 
