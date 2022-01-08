@@ -4,8 +4,8 @@ const date_picker_element = document.querySelector('.date-picker');
 const selected_date_element = document.querySelector('.date-picker .selected-date');
 const dates_element = document.querySelector('.date-picker .dates');
 const month_element = document.querySelector('.date-picker .dates .month .month-and-year');
-const prev_mth_element = document.querySelector('.date-picker .dates .month .prev-mth');
-const next_mth_element = document.querySelector('.date-picker .dates .month .next-mth');
+const prev_mth_element = document.querySelector('.date-picker .dates .month .prev-month');
+const next_mth_element = document.querySelector('.date-picker .dates .month .next-month');
 const days_element = document.querySelector('.date-picker .dates .days');
 const months = ['January', 'February', 'March',  'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -33,8 +33,27 @@ month_element.textContent = months[month] + ' ' + year;
 // EVENT LISTENERS
 
 date_picker_element.addEventListener('click', toggleDatePicker);
+next_mth_element.addEventListener('click', () => changeMonth(1));
+prev_mth_element.addEventListener('click', () => changeMonth(-1));
 
 // FUNCTIONS
+
+/**
+ * change month and display new month and year
+ * @param {integer} monthIncrement - 1 for forward month, -1 for back month 
+ */
+function changeMonth(monthIncrement) {
+    month += monthIncrement;
+    if (month == 12) {
+        month = 0;
+        year ++;
+    }
+    if (month == -1) {
+        month = 11;
+        year --;
+    }
+    month_element.textContent = months[month] + ' ' + year;
+}
 
 /**
  * toggle date picker
@@ -56,7 +75,6 @@ function toggleDatePicker(e) {
  * @returns {boolean}
  */
 function checkEventPathForClass (path, selector) {
-    console.log(path);
     for (let i = 0; i < path.length; i++) {
         if (path[i].classList && path[i].classList.contains(selector)) {
             return true;
