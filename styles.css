@@ -92,10 +92,8 @@ h1 span {
 /* Days grid */
 .date-picker .dates .days-grid {
     display: grid;
-    /* 7 days in a week, each 7th is one fraction so take up whole row */
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(5, 50px);
-    /* height: 250px; */
 }
 
 /* one day */
