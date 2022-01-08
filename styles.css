@@ -88,3 +88,31 @@ h1 span {
     background-color: #00CA85;
     color: white;
 }
+
+/* Days grid */
+.date-picker .dates .days-grid {
+    display: grid;
+    /* 7 days in a week, each 7th is one fraction so take up whole row */
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(5, 50px);
+    /* height: 250px; */
+}
+
+/* one day */
+.date-picker .dates .days-grid .day {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #313131;
+    height: 50px;
+}
+
+/* selected day */
+.date-picker .dates .days-grid .day.selected {
+    background-color: #00CA85;
+}
+
+/* today */
+.date-picker .dates .days-grid .day.today {
+    border: 1px solid #CCC;
+}
