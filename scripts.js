@@ -30,6 +30,9 @@ let todaysYear = year;
 // set month and year (in monnth selector)
 displayMonthAndYear();
 
+// populate date value in format dd / mm / yy
+selected_date_element.textContent = formatDate(date);
+
 // EVENT LISTENERS
 
 date_picker_element.addEventListener('click', toggleDatePicker);
@@ -88,4 +91,20 @@ function checkEventPathForClass (path, selector) {
         }
     }
     return false;
+}
+
+/**
+ * format date from date parameter
+ * @param {object} d - date object 
+ * @returns date in format dd / mm / yyyy
+ */
+function formatDate(d) {
+    let day = d.getDate();
+    if (day < 10) {day = '0' + day};
+
+    let month = d.getMonth() + 1;
+    if (month < 10) {month = '0' + month};
+
+    let year = d.getFullYear();
+    return day + ' / ' + month + ' / ' + year;
 }
