@@ -5,20 +5,8 @@
 }
 
 body {
-    background-color: #FFCE00;
+    background-color: rgb(155, 186, 216);
     font-family: Arial, Helvetica, sans-serif;
-}
-
-h1 {
-    margin: 30px 0;
-    color: #313131;
-    font-size: 42px;
-    font-weight: 900;
-    text-align: center;
-}
-
-h1 span {
-    font-weight: 300;
 }
 
 /* Date picker (whole thing) */

@@ -1,5 +1,4 @@
 // DECLARATIONS
-
 const date_picker_element = document.querySelector('.date-picker');
 const selected_date_element = document.querySelector('.selected-date');
 const dates_element = document.querySelector('.dates');
