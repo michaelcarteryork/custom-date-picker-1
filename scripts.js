@@ -1,5 +1,6 @@
 buildDatePicker('dp-1');
 buildDatePicker('dp-2');
+buildDatePicker('dp-3');
 
 function buildDatePicker(element_id) {
     // DECLARATIONS
