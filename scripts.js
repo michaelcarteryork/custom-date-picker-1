@@ -6,7 +6,7 @@ const datePickerData = [
         id: 'dp-1',
         active: true,
         startDate: true,
-        endDate: false
+        endDate: true
     },
     {
         id: 'dp-2',
@@ -60,11 +60,14 @@ for (let index = 0; index < datePickerData.length; index++) {
         
         // if item has an end date
         if (datePickerData[index].endDate) {
-            const end_date_element = document.createElement('div');
-            end_date_element.classList.add('end-date');
-            end_date_element.textContent = 'dd / mm / yyyy';
-            start_and_end_date_element.appendChild(end_date_element);
+            let new_element = document.createElement('div');
+            new_element.classList.add('end-date');
+            new_element.textContent = 'dd / mm / yyyy';
+            start_and_end_date_element.appendChild(new_element);
+            const end_date_element = date_picker.querySelector('.end-date');
+            end_date_element.addEventListener('click', toggleDatePicker);
         }
+       
         
         const dates_element = date_picker.querySelector('.dates');
         const month_element = date_picker.querySelector('.month-and-year');
@@ -104,6 +107,7 @@ for (let index = 0; index < datePickerData.length; index++) {
         // EVENT LISTENERS
 
         start_date_element.addEventListener('click', toggleDatePicker);
+        
         next_mth_element.addEventListener('click', () => changeMonth(1));
         prev_mth_element.addEventListener('click', () => changeMonth(-1));
 
