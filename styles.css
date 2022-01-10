@@ -22,7 +22,7 @@ body {
     user-select: none;
 }
 .date-picker:hover {
-    background-color: #DDD;
+    background-color: #EEE;
 }
 
 /* Selected date */
@@ -69,7 +69,7 @@ body {
     font-size: 20px
 }
 .date-picker .dates .month .arrows:hover {
-    background-color: #DDD;
+    background-color: #EEE;
 }
 
 .date-picker .dates .month .arrows:active {
