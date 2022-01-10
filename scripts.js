@@ -5,7 +5,8 @@ buildDatePicker('dp-1');
 function buildDatePicker(element_id) {
     // DECLARATIONS
     const date_picker = document.getElementById(element_id);
-    const selected_date_element = date_picker.querySelector('.selected-date');
+    const start_date_element = date_picker.querySelector('.start-date');
+    const end_date_element = date_picker.querySelector('.end-date');
     const dates_element = date_picker.querySelector('.dates');
     const month_element = date_picker.querySelector('.month-and-year');
     const prev_mth_element = date_picker.querySelector('.prev-month');
@@ -33,7 +34,7 @@ function buildDatePicker(element_id) {
     let todaysYear = year;
 
     // selected date: populate in format dd / mm / yy
-    selected_date_element.textContent = formatDate(date);
+    start_date_element.textContent = formatDate(date);
 
     // month selector: display month and year
     displayMonthAndYear();
@@ -43,7 +44,7 @@ function buildDatePicker(element_id) {
 
     // EVENT LISTENERS
 
-    date_picker.addEventListener('click', toggleDatePicker);
+    start_date_element.addEventListener('click', toggleDatePicker);
     next_mth_element.addEventListener('click', () => changeMonth(1));
     prev_mth_element.addEventListener('click', () => changeMonth(-1));
 
@@ -137,12 +138,12 @@ function buildDatePicker(element_id) {
                 selectedDay = (i + 1);
                 selectedMonth = month;
                 selectedYear =  year;
-                selected_date_element.textContent = formatDate(selectedDate);
+                start_date_element.textContent = formatDate(selectedDate);
                 populateDates();
             })
             
             // add dataset value to selected date
-            selected_date_element.dataset.value = selectedDate;
+            start_date_element.dataset.value = selectedDate;
 
             // add each date
             days_element.appendChild(day_element);

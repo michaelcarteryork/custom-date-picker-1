@@ -24,15 +24,25 @@ body {
     background-color: #EEE;
 }
 
+/* Start and end date selectors */
+.date-picker .start-and-end-date {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /* Selected date */
-.date-picker .selected-date {
+.date-picker .start-and-end-date div {
     width: 100%;
     height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #313131;
-    font-size: 28px;
+    font-size: 20px;
+}
+.selected-date {
+    background-color: red;
 }
 
 /* Month and dates */
