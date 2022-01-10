@@ -1,12 +1,16 @@
 buildDatePicker('dp-1');
-// buildDatePicker('dp-2');
+buildDatePicker('dp-2');
 // buildDatePicker('dp-3');
 
 function buildDatePicker(element_id) {
     // DECLARATIONS
     const date_picker = document.getElementById(element_id);
     const start_date_element = date_picker.querySelector('.start-date');
-    const end_date_element = date_picker.querySelector('.end-date');
+    
+    if (typeof date_picker.querySelector('.end-date') != "undefined") {
+        const end_date_element = date_picker.querySelector('.end-date');
+     }
+    
     const dates_element = date_picker.querySelector('.dates');
     const month_element = date_picker.querySelector('.month-and-year');
     const prev_mth_element = date_picker.querySelector('.prev-month');
