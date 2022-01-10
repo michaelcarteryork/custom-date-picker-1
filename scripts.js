@@ -103,6 +103,17 @@ function populateDates() {
             day_element.classList.add('today');
         }
 
+        // add event listener to each date value
+        day_element.addEventListener('click', function () {
+            selectedDate = new Date(year + '-' + (month + 1) + '-' + (i + 1));
+            selectedDay = (i + 1);
+            selectedMonth = month;
+            selectedYear =  year;
+            selected_date_element.textContent = formatDate(selectedDate);
+            populateDates();
+        })
+        
+        // add each date
         days_element.appendChild(day_element);
     }
 }
