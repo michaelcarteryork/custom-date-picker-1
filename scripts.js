@@ -1,6 +1,6 @@
 buildDatePicker('dp-1');
-buildDatePicker('dp-2');
-buildDatePicker('dp-3');
+// buildDatePicker('dp-2');
+// buildDatePicker('dp-3');
 
 function buildDatePicker(element_id) {
     // DECLARATIONS
@@ -30,13 +30,13 @@ function buildDatePicker(element_id) {
     let todaysMonth = month;
     let todaysYear = year;
 
-    // set month and year (in monnth selector)
-    displayMonthAndYear();
-
-    // populate selected date value in format dd / mm / yy
+    // selected date: populate in format dd / mm / yy
     selected_date_element.textContent = formatDate(date);
 
-    // populate with days of week
+    // month selector: display month and year
+    displayMonthAndYear();
+
+    // dates grid: populate with days of week
     populateDates();
 
     // EVENT LISTENERS
