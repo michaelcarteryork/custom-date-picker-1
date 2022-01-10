@@ -1,14 +1,74 @@
-buildDatePicker('dp-1');
-buildDatePicker('dp-2');
-// buildDatePicker('dp-3');
+/*
+Date picker data - TODO: do in separate file
+*/
+const datePickerData = [
+    {
+        id: 'dp-1',
+        active: true,
+        startDate: true,
+        endDate: false
+    },
+    {
+        id: 'dp-2',
+        active: true,
+        startDate: true,
+        endDate: false
+    }
+    ,
+    {
+        id: 'dp-3',
+        active: true,
+        startDate: true,
+        endDate: true
+    }
+];
 
-function buildDatePicker(element_id) {
+// Build each data picker HTML
+// Ultimately do in nunjucks file TODO
+const all_date_pickers = document.querySelector('.all-date-pickers');
+all_date_pickers.innerHTML = ''; 
+
+for (let i = 0; i < datePickerData.length; i++) {
+    if (datePickerData[i].active) {
+        all_date_pickers.innerHTML += `
+        <div id="` +  datePickerData[i].id + `" class="date-picker">
+            <div class="start-and-end-date">
+                <div class="start-date"></div>
+            </div>
+            
+            <div class="dates">
+                <div class="month">
+                    <div class="arrows prev-month">&lt;</div>
+                    <div class="month-and-year"></div>
+                    <div class="arrows next-month">&gt;</div>
+                </div>
+                <div class="week-day-headings"></div>
+                <div class="days-grid"></div>
+            </div>
+        </div>
+        `;
+    } 
+}
+
+// Build each data picker JS
+for (let i = 0; i < datePickerData.length; i++) {
+    if (datePickerData[i].active) {
+        buildDatePicker(datePickerData[i].id, i);
+    }  
+}
+
+function buildDatePicker(element_id, index) {
     // DECLARATIONS
     const date_picker = document.getElementById(element_id);
+    const start_and_end_date_element = date_picker.querySelector('.start-and-end-date');
     const start_date_element = date_picker.querySelector('.start-date');
     
-    if (typeof date_picker.querySelector('.end-date') != "undefined") {
-        const end_date_element = date_picker.querySelector('.end-date');
+    // if item has an end date
+    if (datePickerData[index].endDate) {
+        const end_date_element = document.createElement('div');
+        end_date_element.classList.add('end-date');
+        end_date_element.textContent = 'dd / mm / yyyy';
+        start_and_end_date_element.appendChild(end_date_element);
      }
     
     const dates_element = date_picker.querySelector('.dates');
