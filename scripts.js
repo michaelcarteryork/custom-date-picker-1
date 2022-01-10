@@ -10,8 +10,10 @@ function buildDatePicker(element_id) {
     const month_element = date_picker.querySelector('.month-and-year');
     const prev_mth_element = date_picker.querySelector('.prev-month');
     const next_mth_element = date_picker.querySelector('.next-month');
+    const weekday_headings_element = date_picker.querySelector('.week-day-headings'); 
     const days_element = date_picker.querySelector('.days-grid');
     const months = ['January', 'February', 'March',  'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    const weekdays = 'MTWTFSS';
 
     // initial values for current date, day, month and year
     let date = new Date();
@@ -90,8 +92,15 @@ function buildDatePicker(element_id) {
      * then get last day in previous month
      */
     function populateDates() {
+        weekday_headings_element.innerHTML = '';
         days_element.innerHTML = '';
-        let amount_days = new Date(year, month + 1, 0).getDate();
+
+        for (let i = 0; i < 7; i++) {
+            const weekday_heading = document.createElement('div');
+            weekday_heading.classList.add('day');
+            weekday_heading.textContent = weekdays.slice(i,i+1);
+            weekday_headings_element.appendChild(weekday_heading);
+        }
 
         // 0 = Monday, 1 = Tuesday etc
         let first_day_in_month = new Date(year, month, 1).getDay();
@@ -106,8 +115,7 @@ function buildDatePicker(element_id) {
             days_element.appendChild(empty_day_element);
         }
         
-        
-        console.log(first_day_in_month);
+        let amount_days = new Date(year, month + 1, 0).getDate();
         for (let i = 0; i < amount_days; i++) {
             const day_element = document.createElement('div');
             day_element.classList.add('day');
