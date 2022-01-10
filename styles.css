@@ -81,7 +81,7 @@ body {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(5, 50px);
-    height: 250px;
+    height: 300px;
 }
 
 /* Week day headings */

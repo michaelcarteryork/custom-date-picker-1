@@ -92,6 +92,22 @@ function buildDatePicker(element_id) {
     function populateDates() {
         days_element.innerHTML = '';
         let amount_days = new Date(year, month + 1, 0).getDate();
+
+        // 0 = Monday, 1 = Tuesday etc
+        let first_day_in_month = new Date(year, month, 1).getDay();
+
+        // empty elements prior to first day of month
+        for (let i = 0; i < first_day_in_month - 1; i++) {
+            const empty_day_element = document.createElement('div');
+            empty_day_element.classList.add('day');
+            
+            // Could do '-' or day in previous month?
+            empty_day_element.textContent = '';
+            days_element.appendChild(empty_day_element);
+        }
+        
+        
+        console.log(first_day_in_month);
         for (let i = 0; i < amount_days; i++) {
             const day_element = document.createElement('div');
             day_element.classList.add('day');
