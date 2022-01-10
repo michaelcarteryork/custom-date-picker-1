@@ -110,6 +110,10 @@ function populateDates() {
             selectedMonth = month;
             selectedYear =  year;
             selected_date_element.textContent = formatDate(selectedDate);
+
+            // add dataset valaue to selected date
+            selected_date_element.dataset.value = selectedDate;
+            
             populateDates();
         })
         
