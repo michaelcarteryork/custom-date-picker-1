@@ -1,125 +1,129 @@
-// DECLARATIONS
-const date_picker_element = document.querySelector('.date-picker');
-const selected_date_element = document.querySelector('.selected-date');
-const dates_element = document.querySelector('.dates');
-const month_element = document.querySelector('.month-and-year');
-const prev_mth_element = document.querySelector('.prev-month');
-const next_mth_element = document.querySelector('.next-month');
-const days_element = document.querySelector('.days-grid');
-const months = ['January', 'February', 'March',  'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+buildDatePicker('dp-1');
+buildDatePicker('dp-2');
 
-// initial values for current date, day, month and year
-let date = new Date();
-let day = date.getDate();
-let month = date.getMonth();
-let year = date.getFullYear();
+function buildDatePicker(element_id) {
+    // DECLARATIONS
+    const date_picker = document.getElementById(element_id);
+    const selected_date_element = date_picker.querySelector('.selected-date');
+    const dates_element = date_picker.querySelector('.dates');
+    const month_element = date_picker.querySelector('.month-and-year');
+    const prev_mth_element = date_picker.querySelector('.prev-month');
+    const next_mth_element = date_picker.querySelector('.next-month');
+    const days_element = date_picker.querySelector('.days-grid');
+    const months = ['January', 'February', 'March',  'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-// these values change on user selection
-let selectedDate = date;
-let selectedDay = day;
-let selectedMonth = month;
-let selectedYear = year;
+    // initial values for current date, day, month and year
+    let date = new Date();
+    let day = date.getDate();
+    let month = date.getMonth();
+    let year = date.getFullYear();
 
-// today (doesn't change)
-let todaysDate = date;
-let todaysDay = day;
-let todaysMonth = month;
-let todaysYear = year;
+    // these values change on user selection
+    let selectedDate = date;
+    let selectedDay = day;
+    let selectedMonth = month;
+    let selectedYear = year;
 
-// set month and year (in monnth selector)
-displayMonthAndYear();
+    // today (doesn't change)
+    let todaysDay = day;
+    let todaysMonth = month;
+    let todaysYear = year;
 
-// populate selected date value in format dd / mm / yy
-selected_date_element.textContent = formatDate(date);
-
-// populate with days of week
-populateDates();
-
-// EVENT LISTENERS
-
-date_picker_element.addEventListener('click', toggleDatePicker);
-next_mth_element.addEventListener('click', () => changeMonth(1));
-prev_mth_element.addEventListener('click', () => changeMonth(-1));
-
-// FUNCTIONS
-
-/**
- * display month and year in month selector
- */
-function displayMonthAndYear() {
-    month_element.textContent = months[month] + ' ' + year;
-}
-
-/**
- * change month and display new month and year
- * @param {integer} monthIncrement - 1 for forward month, -1 for back month 
- */
-function changeMonth(monthIncrement) {
-    month += monthIncrement;
-    if (month == 12) {
-        month = 0;
-        year ++;
-    }
-    if (month == -1) {
-        month = 11;
-        year --;
-    }
+    // set month and year (in monnth selector)
     displayMonthAndYear();
+
+    // populate selected date value in format dd / mm / yy
+    selected_date_element.textContent = formatDate(date);
+
+    // populate with days of week
     populateDates();
-}
 
-/**
- * toggle date picker
- * if click not within dates toggle on and off active class to dates_element
- * @param {object} event object 
- */
-function toggleDatePicker(e) {
-    if (!checkEventPathForClass(e.path, 'dates')) {
-        dates_element.classList.toggle('active');
+    // EVENT LISTENERS
+
+    date_picker.addEventListener('click', toggleDatePicker);
+    next_mth_element.addEventListener('click', () => changeMonth(1));
+    prev_mth_element.addEventListener('click', () => changeMonth(-1));
+
+    // FUNCTIONS
+
+    /**
+     * display month and year in month selector
+     */
+    function displayMonthAndYear() {
+        month_element.textContent = months[month] + ' ' + year;
     }
-}
 
-/**
- * populate days of month grid
- * to get numnber of days in current month:
- * go one month ahead
- * then get last day in previous month
- */
-function populateDates() {
-    days_element.innerHTML = '';
-    let amount_days = new Date(year, month + 1, 0).getDate();
-    for (let i = 0; i < amount_days; i++) {
-        const day_element = document.createElement('div');
-        day_element.classList.add('day');
-        day_element.textContent = i + 1;
-
-        // add class for selected day
-        if (selectedDay == (i + 1) && selectedYear == year && selectedMonth == month) {
-            day_element.classList.add('selected');
+    /**
+     * change month and display new month and year
+     * @param {integer} monthIncrement - 1 for forward month, -1 for back month 
+     */
+    function changeMonth(monthIncrement) {
+        month += monthIncrement;
+        if (month == 12) {
+            month = 0;
+            year ++;
         }
-
-        // add class for today
-        if (todaysDay == (i + 1) && todaysYear == year && todaysMonth == month) {
-            day_element.classList.add('today');
+        if (month == -1) {
+            month = 11;
+            year --;
         }
-
-        // add event listener to each date value
-        day_element.addEventListener('click', function () {
-            selectedDate = new Date(year + '-' + (month + 1) + '-' + (i + 1));
-            selectedDay = (i + 1);
-            selectedMonth = month;
-            selectedYear =  year;
-            selected_date_element.textContent = formatDate(selectedDate);
-            populateDates();
-        })
-        
-        // add dataset value to selected date
-        selected_date_element.dataset.value = selectedDate;
-
-        // add each date
-        days_element.appendChild(day_element);
+        displayMonthAndYear();
+        populateDates();
     }
-}
+
+    /**
+     * toggle date picker
+     * if click not within dates toggle on and off active class to dates_element
+     * @param {object} event object 
+     */
+    function toggleDatePicker(e) {
+        if (!checkEventPathForClass(e.path, 'dates')) {
+            dates_element.classList.toggle('active');
+        }
+    }
+
+    /**
+     * populate days of month grid
+     * to get numnber of days in current month:
+     * go one month ahead
+     * then get last day in previous month
+     */
+    function populateDates() {
+        days_element.innerHTML = '';
+        let amount_days = new Date(year, month + 1, 0).getDate();
+        for (let i = 0; i < amount_days; i++) {
+            const day_element = document.createElement('div');
+            day_element.classList.add('day');
+            day_element.textContent = i + 1;
+
+            // add class for selected day
+            if (selectedDay == (i + 1) && selectedYear == year && selectedMonth == month) {
+                day_element.classList.add('selected');
+            }
+
+            // add class for today
+            if (todaysDay == (i + 1) && todaysYear == year && todaysMonth == month) {
+                day_element.classList.add('today');
+            }
+
+            // add event listener to each date value
+            day_element.addEventListener('click', function () {
+                selectedDate = new Date(year + '-' + (month + 1) + '-' + (i + 1));
+                selectedDay = (i + 1);
+                selectedMonth = month;
+                selectedYear =  year;
+                selected_date_element.textContent = formatDate(selectedDate);
+                populateDates();
+            })
+            
+            // add dataset value to selected date
+            selected_date_element.dataset.value = selectedDate;
+
+            // add each date
+            days_element.appendChild(day_element);
+        }
+    }
+}  
 
 // HELPER FUNCTIONS
 
