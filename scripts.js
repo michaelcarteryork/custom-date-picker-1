@@ -92,6 +92,17 @@ function populateDates() {
         const day_element = document.createElement('div');
         day_element.classList.add('day');
         day_element.textContent = i + 1;
+
+        // add class for selected day
+        if (selectedDay == (i + 1) && selectedYear == year && selectedMonth == month) {
+            day_element.classList.add('selected');
+        }
+
+        // add class for today
+        if (todaysDay == (i + 1) && todaysYear == year && todaysMonth == month) {
+            day_element.classList.add('today');
+        }
+
         days_element.appendChild(day_element);
     }
 }

@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: rgb(155, 186, 216);
+    background-color: #DDD;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -22,7 +22,7 @@ body {
     user-select: none;
 }
 .date-picker:hover {
-    background-color: #F3F3F3;
+    background-color: #DDD;
 }
 
 /* Selected date */
@@ -55,7 +55,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid #EEE;
+    border-bottom: 2px solid #DDD;
 }
 
 /* Previous/next month arrows */
@@ -69,11 +69,11 @@ body {
     font-size: 20px
 }
 .date-picker .dates .month .arrows:hover {
-    background-color: #F3F3F3;
+    background-color: #DDD;
 }
 
 .date-picker .dates .month .arrows:active {
-    background-color: #00CA85;
+    background-color: #999;
     color: white;
 }
 
@@ -95,10 +95,10 @@ body {
 
 /* selected day */
 .date-picker .dates .days-grid .day.selected {
-    background-color: #00CA85;
+    background-color: #DDD;
 }
 
 /* today */
 .date-picker .dates .days-grid .day.today {
-    border: 1px solid #CCC;
+    border: 1px solid #333;
 }
