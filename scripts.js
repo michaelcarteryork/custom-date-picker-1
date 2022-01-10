@@ -5,7 +5,7 @@ const dates_element = document.querySelector('.dates');
 const month_element = document.querySelector('.month-and-year');
 const prev_mth_element = document.querySelector('.prev-month');
 const next_mth_element = document.querySelector('.next-month');
-const days_element = document.querySelector('.days');
+const days_element = document.querySelector('.days-grid');
 const months = ['January', 'February', 'March',  'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 // initial values for current date, day, month and year
@@ -29,8 +29,11 @@ let todaysYear = year;
 // set month and year (in monnth selector)
 displayMonthAndYear();
 
-// populate date value in format dd / mm / yy
+// populate selected date value in format dd / mm / yy
 selected_date_element.textContent = formatDate(date);
+
+// populate with days of week
+populateDates();
 
 // EVENT LISTENERS
 
@@ -62,6 +65,7 @@ function changeMonth(monthIncrement) {
         year --;
     }
     displayMonthAndYear();
+    populateDates();
 }
 
 /**
@@ -72,6 +76,23 @@ function changeMonth(monthIncrement) {
 function toggleDatePicker(e) {
     if (!checkEventPathForClass(e.path, 'dates')) {
         dates_element.classList.toggle('active');
+    }
+}
+
+/**
+ * populate days of month grid
+ * to get numnber of days in current month:
+ * go one month ahead
+ * then get last day in previous month
+ */
+function populateDates() {
+    days_element.innerHTML = '';
+    let amount_days = new Date(year, month + 1, 0).getDate();
+    for (let i = 0; i < amount_days; i++) {
+        const day_element = document.createElement('div');
+        day_element.classList.add('day');
+        day_element.textContent = i + 1;
+        days_element.appendChild(day_element);
     }
 }
 
